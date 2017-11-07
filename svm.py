@@ -2,8 +2,13 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
 style.use('ggplot')
-# Decision rule/Classifier sign(w.x+b) the resultant sign is the class
+#THE MAIN PROBLEM OF THE SVM IS OPTIMIZATION. FINDING THE LOWEST VALUE OF W(VECTOR)
+# AND LARGEST VALUE OF B(BIAS)
+# Decision rule/Classifier sign(w.x+b) the resultant sign is the class as svm is a
+#binary classifier i.e, can only have 2 classes at a time.
+#
 class Support_Vector_Machine:
+    #initialization method
     def __init__(self, visualization=True):
         self.visualization = visualization
         self.colors = {1: 'r', -1: 'b'}
@@ -11,7 +16,7 @@ class Support_Vector_Machine:
             self.fig = plt.figure()
             self.ax = self.fig.add_subplot(1, 1, 1)
 
-    # train
+    # training of the svm
     def fit(self, data):
         self.data = data
         # { ||w||: [w,b] }
@@ -28,13 +33,12 @@ class Support_Vector_Machine:
                 for feature in featureset:
                     all_data.append(feature)
 
-        self.max_feature_value = max(all_data)
-        self.min_feature_value = min(all_data)
-        all_data = None
+        self.max_feature_value = max(all_data) # max value in dataset
+        self.min_feature_value = min(all_data) # min value in dataset
+        all_data = None # clear memory
 
         # support vectors yi(xi.w+b) = 1
-
-
+        # optimization algorithm
         step_sizes = [self.max_feature_value * 0.1,
                       self.max_feature_value * 0.01,
                       self.max_feature_value * 0.001,
@@ -51,7 +55,7 @@ class Support_Vector_Machine:
             w = np.array([latest_optimum, latest_optimum])
             # we can do this because svm is a convex problem
             optimized = False
-            while not optimized:
+            while not optimized: # keep stepping down
                 for b in np.arange(-1 * (self.max_feature_value * b_range_multiple),
                                    self.max_feature_value * b_range_multiple,
                                    step * b_multiple):
@@ -63,20 +67,23 @@ class Support_Vector_Machine:
                                 yi = i
                                 if not yi * (np.dot(w_t, xi) + b) >= 1:
                                     found_option = False
-                                    # print(xi,':',yi*(np.dot(w_t,xi)+b))
+                                    # exit if the above equation isnt satisfied
 
                         if found_option:
+                            #the key is the magnitude of w and the value is vector
+                            #w and value of b
                             opt_dict[np.linalg.norm(w_t)] = [w_t, b]
 
                 if w[0] < 0:
-                    optimized = True
+                    optimized = True # break while loop if w gets low enough. ie, a negative
                     print('Optimized a step.')
+
                 else:
                     w = w - step
 
-            norms = sorted([n for n in opt_dict])
+            magnitude = sorted([n for n in opt_dict]) # sorted in ascending order
             # ||w|| : [w,b]
-            opt_choice = opt_dict[norms[0]]
+            opt_choice = opt_dict[magnitude[0]] # derive smallest key
             self.w = opt_choice[0]
             self.b = opt_choice[1]
             latest_optimum = opt_choice[0][0] + step * 2
@@ -126,7 +133,6 @@ class Support_Vector_Machine:
 
         plt.show()
 
-
 data_dict = {-1: np.array([[1, 7],
                            [2, 8],
                            [3, 8], ]),
@@ -136,9 +142,10 @@ data_dict = {-1: np.array([[1, 7],
                           [7, 3], ])}
 
 svm = Support_Vector_Machine()
+
 svm.fit(data=data_dict)
 
-predict_us = [[0, 10],
+predict = [[0, 10],
               [1, 3],
               [3, 4],
               [3, 5],
@@ -147,7 +154,7 @@ predict_us = [[0, 10],
               [6, -5],
               [5, 8]]
 
-for p in predict_us:
+for p in predict:
     svm.predict(p)
 
 svm.visualize()
