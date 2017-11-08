@@ -6,7 +6,7 @@ style.use('ggplot')
 # AND LARGEST VALUE OF B(BIAS)
 # Decision rule/Classifier sign(w.x+b) the resultant sign is the class as svm is a
 #binary classifier i.e, can only have 2 classes at a time.
-#
+# a support vector's equation is x.w+b=1 or x.w+b=-1
 class Support_Vector_Machine:
     #initialization method
     def __init__(self, visualization=True):
@@ -98,6 +98,7 @@ class Support_Vector_Machine:
 
     def visualize(self):
         [[self.ax.scatter(x[0], x[1], s=100, color=self.colors[i]) for x in data_dict[i]] for i in data_dict]
+        self.fig.savefig('svm.png')
 
         # hyperplane = x.w+b
         # v = x.w+b

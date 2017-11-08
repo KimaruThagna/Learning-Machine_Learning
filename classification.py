@@ -1,7 +1,7 @@
 #   K NEAREST NEIGHBOURS
 # CHOSING WHICH CLASS A POINT BELONGS TO BY DETERMINING WHICH POINTS ARE CLOSEST
 #K SHOULD BE ODD TO AVOID SPLIT VOTES
-from sklearn import cross_validation,preprocessing,neighbors
+from sklearn import cross_validation,preprocessing,neighbors,svm
 import numpy as np
 import pandas as pd
 
@@ -15,6 +15,7 @@ y=np.array(dataframe['class']) #our label
 X_train,X_test,y_train,y_test=cross_validation.train_test_split(X,y,test_size=0.75)
 #use a % of tha data for training
 clf=neighbors.KNeighborsClassifier()
+#clf=svm.SVC() if using svm
 clf.fit(X_train,y_train)
 accuracy=clf.score(X_test,y_test)
 print(accuracy)
