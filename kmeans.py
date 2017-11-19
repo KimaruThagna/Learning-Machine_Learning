@@ -4,8 +4,8 @@ import numpy as np
 from matplotlib import style
 style.use('ggplot')
 from sklearn.cluster import KMeans
-# flat clustering example algorithm-Kmeans
-#hierachical clustering example algorithm- Meanshift
+# flat-clustering example algorithm-Kmeans
+#hierachical-clustering example algorithm- Meanshift
 X=np.array([
     [1,2],
     [1.5,1.8],
