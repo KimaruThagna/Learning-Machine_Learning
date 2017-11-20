@@ -39,7 +39,18 @@ import pandas as pd
 # for i in range(len(X)):
 #     plt.plot(X[i][0],X[i][1],colors[labels[i]],markersize=25)
 # plt.scatter(centroids[:,0],centroids[:,1],marker='x',s=150)
+# flat-clustering example algorithm-Kmeans
+#hierachical-clustering example algorithm- Meanshift
+X=np.array([
+    [1,2],
+    [1.5,1.8],
+    [5,8],
+    [8,8],
+    [1,0.6],
+    [9,11]
+])
+# plt.scatter(X[:,0],X[:,1],s=150,linewidths=5) #X[:,0] returns the zeroeth elements
+# # of the items in the x array X[:,1] returns all the elements in pos 1 of te items in the X array
 # plt.show()
-
 df=pd.read_excel('titanic.xls',sheetname='titanic3')
 print(df.head())
