@@ -2,7 +2,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import progressbar
-import time
 from matplotlib import style
 style.use('ggplot')
 from sklearn.cluster import KMeans
