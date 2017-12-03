@@ -63,16 +63,16 @@ for classification in clf.classifications:
     color=colors[classification]
     for featureset in clf.classifications[classification]:
         plt.scatter(featureset[0],featureset[1],marker="x",color=color,s=50)
-#
-# new_data=np.array([[4,8],
-#                    [3,7],
-#                    [5,-4],
-#                    [1,1],
-#                    [2,8],
-#                    [1,4]])
-# for data in new_data:
-#     classification=clf.predict(data)
-#     plt.scatter(data[0],data[1],color=colors[classification],s=50,marker="o")
+
+new_data=np.array([[4,8],
+                   [3,7],
+                   [5,-4],
+                   [1,1],
+                   [2,8],
+                   [1,4]])
+for data in new_data:
+    classification=clf.predict(data)
+    plt.scatter(data[0],data[1],color=colors[classification],s=50,marker="o")
 plt.show()
 
 
