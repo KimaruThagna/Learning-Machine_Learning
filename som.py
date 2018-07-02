@@ -1,81 +1,68 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-0723220874
-"""
-Global parameters
-"""
-N = 20 # linear size of 2D map
+N = 100 # linear size of 2D map
 n_teacher = 10000 # # of teacher signal
 np.random.seed(100)# test seed for random number
 
-def main():
-    # initialize node vectors
-    nodes = np.random.rand(N,N,3)# node array. each node has 3-dim weight vector
-    #initial out put
-    #TODO; make out put function to simplify here 
+def kohonen():
+    # initialize grid
+    nodes = np.random.rand(N,N,3)#Each node has a 3d weight vector
     plt.imshow(nodes, interpolation='none')
     plt.savefig("init.png")
-    """"""
-    """ Learning """
-    """"""
     # teacher signal
     teachers = np.random.rand(n_teacher,3)
     for i in range(n_teacher):
         train(nodes, teachers, i)
-        # intermediate out put
-        if i%1000 ==0 or i< 100: #out put for i<100 or each 1000 iteration
-            plt.imshow(nodes, interpolation='none')
-            plt.savefig(str(i)+".png")
+        # # intermediate out put
+        # if i%1000 ==0 or i< 100: #out put for i<100 or each 1000 iteration
+        #     plt.imshow(nodes, interpolation='none')
+        #     print('saving figure'+str(i)+".png")
+        #     plt.savefig(str(i)+".png")
     #output
+
     plt.imshow(nodes, interpolation='none')
     plt.savefig("final.png")
     
 def train(nodes, teachers, i):
-    bmu = best_matching_unit(nodes, teachers[i])
-    #print bmu
-    for x in range(N):
-        for y in range(N):
+    bmu = best_matching_unit(nodes, teachers[i]) # coords of the node closest to the teacher
+    print(bmu)
+    for x in range(N): # per row
+        for y in range(N):# per column at row x
             c = np.array([x,y])# coordinate of unit
-            d = np.linalg.norm(c-bmu)
+            d = np.linalg.norm(c-bmu) #euclidian dist
             L = learning_ratio(i)
             S = learning_radius(i,d)
-            for z in range(3): #TODO clear up using numpy function
-                nodes[x,y,z] += L*S*(teachers[i,z] - nodes[x,y,z])
-
+            for z in range(3): # per value of node at row x,col y
+                nodes[x,y,z] += L*S*(teachers[i,z] - nodes[x,y,z])# teacher-system...add delta(modified by the decay func
 
 
 def best_matching_unit(nodes, teacher):
-    #compute all norms (square)
-    #TODO simplify using numpy function
-    norms = np.zeros((N,N))
+    #compute all squared errors
+    norms = np.zeros((N,N)) # initialize to an NXN matrix of 0s
     for i in range(N):
         for j in range(N):
             for k in range(3):
-                norms[i,j] += (nodes[i,j,k] - teacher[k])**2
+                norms[i,j] += (nodes[i,j,k] - teacher[k])**2 #squared error
     #then, choose the minimum one
-    bmu = np.argmin(norms) #argment with minimum element 
-    # argmin returns just flatten, serial index, 
-    # so convert it using unravel_index
+    # norms is an array(NXN) of squared errors,
+    bmu = np.argmin(norms) #minimum element ie, least error
     return np.unravel_index(bmu,(N,N))
+    # get position of bmu from the NXN grid returns a row by col index
 
-def neighbourhood(t):#neighbourhood radious
-    halflife = float(n_teacher/4) #for testing
-    initial  = float(N/2)
+def neighbourhood(t):#neighbourhood radius
+    halflife = float(n_teacher/4)
+    initial  = float(N/2)# half size of lattice
     return initial*np.exp(-t/halflife)
 
 def learning_ratio(t):
-    halflife = float(n_teacher/4) #for testing
-    initial  = 0.1
-    return initial*np.exp(-t/halflife)
+    halflife = float(n_teacher/4)
+    initial  = 0.9998
+    return initial*np.exp(-t/halflife) # decay the learning rate
 
 def learning_radius(t, d):
     # d is distance from BMU
     s = neighbourhood(t)
-    return np.exp(-d**2/(2*s**2))
+    return np.exp(-d**2/(2*s**2)) # gaussian decay
 
-main()
-
-
-
-
+kohonen()

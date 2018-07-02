@@ -69,7 +69,9 @@ for group in test_set: # for each class, 2 or 4
             correct+=1
         total+=1
 print(correct/total)
-# [[plt.scatter(ii[0],ii[1],color=i) for ii in dataset[i]] for i in dataset]
-# plt.show()
+[[plt.scatter(ii[0],ii[1],color=i) for ii in dataset[i]] for i in dataset]
+print(KNN(dataset,new_feature))
+plt.scatter(new_feature[0],new_feature[1],marker='x')
+plt.show()
 
-#print(KNN(dataset,new_feature))
+
