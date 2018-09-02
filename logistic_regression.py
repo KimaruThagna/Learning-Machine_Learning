@@ -1,3 +1,4 @@
+#tutorial script with concepts borrowed from datacamp course work
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
