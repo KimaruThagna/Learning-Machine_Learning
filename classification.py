@@ -4,7 +4,6 @@
 from sklearn import cross_validation,preprocessing,neighbors,svm
 import numpy as np
 import pandas as pd
-
 dataframe=pd.read_csv('Bcancer.txt')
 dataframe.replace('?',-99999,inplace=True)# This replaces the ? with the value -99999
 # thus making the data point an outlier instead of discarding the data point all at once.

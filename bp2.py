@@ -15,16 +15,24 @@ def load_csv(filename):
                 continue
             dataset.append(row)
     return dataset
-
-
+def clean_csv(dataset):
+    #replace missing values with outlier of -9999
+    outlier_val=-9999
+    for row in dataset:
+        for val in row:
+            if val=='':
+                val=outlier_val
+    return dataset
 # Convert string column to float
 def str_column_to_float(dataset, column):
+    dataset=clean_csv(dataset)
     for row in dataset:
-        row[column] = float(row[column])
 
+        row[column]=float(row[column])
 
 # Convert string column to integer
 def str_column_to_int(dataset, column):
+    dataset=clean_csv(dataset)
     class_values = [row[column] for row in dataset]
     unique = set(class_values)
     lookup = dict()
@@ -199,7 +207,8 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 seed(1)
 # load and prepare data
 filename = 'wheat_seeds.txt'
-dataset = load_csv(filename)
+dataset = clean_csv(load_csv(filename))
+# print(dataset)
 for i in range(len(dataset[0]) - 1):
     str_column_to_float(dataset, i)
 # convert class column to integers

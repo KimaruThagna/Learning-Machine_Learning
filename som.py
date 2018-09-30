@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 100 # linear size of 2D map
-n_teacher = 10000 # # of teacher signal
+N = 15 # linear size of 2D map
+n_teacher = 1000 # # of teacher signal
 np.random.seed(100)# test seed for random number
 
 def kohonen():
@@ -14,14 +14,7 @@ def kohonen():
     teachers = np.random.rand(n_teacher,3)
     for i in range(n_teacher):
         train(nodes, teachers, i)
-        # # intermediate out put
-        # if i%1000 ==0 or i< 100: #out put for i<100 or each 1000 iteration
-        #     plt.imshow(nodes, interpolation='none')
-        #     print('saving figure'+str(i)+".png")
-        #     plt.savefig(str(i)+".png")
-    #output
-
-    plt.imshow(nodes, interpolation='none')
+        plt.imshow(nodes, interpolation='none')
     plt.savefig("final.png")
     
 def train(nodes, teachers, i):
@@ -57,7 +50,7 @@ def neighbourhood(t):#neighbourhood radius
 
 def learning_ratio(t):
     halflife = float(n_teacher/4)
-    initial  = 0.9998
+    initial  = 0.99
     return initial*np.exp(-t/halflife) # decay the learning rate
 
 def learning_radius(t, d):

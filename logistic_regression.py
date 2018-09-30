@@ -81,6 +81,6 @@ print('#####################\n')
 print (classification_report(y_test, predictions))
 
 # gauging algorithm performance method 2
-kfold = KFold(n_splits=2, random_state=101)
-result = cross_val_score(clf, X_test, y_test, cv=kfold, scoring='precision')
+kfold = KFold(n_splits=24, random_state=101)
+result = cross_val_score(clf, X_test, y_test, cv=kfold, scoring='accuracy')
 print(result.mean())
