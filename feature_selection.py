@@ -20,3 +20,12 @@ model = ExtraTreesClassifier()
 model.fit(dataset.data, dataset.target)
 # display the relative importance of each attribute
 print(model.feature_importances_)
+
+'''
+LINKS FOR FURTHER READING
+https://towardsdatascience.com/a-feature-selection-tool-for-machine-learning-in-python-b64dd23710f0
+https://towardsdatascience.com/why-how-and-when-to-apply-feature-selection-e9c69adfabf2
+https://www.kaggle.com/kanncaa1/feature-selection-and-data-visualization
+https://www.kaggle.com/residentmario/automated-feature-selection-with-sklearn
+https://www.kaggle.com/mnoori/feature-selection-for-mlr-with-python
+'''
