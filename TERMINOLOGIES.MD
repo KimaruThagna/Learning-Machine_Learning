@@ -14,7 +14,11 @@ These would inlcude:
 
 PRECISION
 A measure of a classifiers exactness. A low value suggests a high number of false positives
-RECALL
+
+RECALL/True Positive Rate
+Can be thought of a measure of classifier completeness.  low recall may indicate many false negatives
+
+
 
 
 F1-SCORE
