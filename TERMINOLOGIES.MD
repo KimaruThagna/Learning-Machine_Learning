@@ -22,6 +22,13 @@ F1-SCORE
 
 Coonveys the balance between the precision and recall.
 
+
++++++++++++++++++++++++++++
+The above descriptions are just explanations/interpretations and not the actual
+technical definnitions. The definitions and formulas can be found online
++++++++++++++++++++++++++++
+
+
 Matthews Correlation Coeffecient(MCC)
 Used as a ameasure of the strength of quality of binary classifications.
 Return Values range from -1 to +1
