@@ -18,7 +18,13 @@ A measure of a classifiers exactness. A low value suggests a high number of fals
 RECALL/True Positive Rate
 Can be thought of a measure of classifier completeness.  low recall may indicate many false negatives
 
-
-
-
 F1-SCORE
+
+Coonveys the balance between the precision and recall.
+
+Matthews Correlation Coeffecient(MCC)
+Used as a ameasure of the strength of quality of binary classifications.
+Return Values range from -1 to +1
+-1---Total disagreement between predicted and actual val
+0-- indicates that the model is no better than random guessing
++1- indicates perfect agreement between predicted and actual value
