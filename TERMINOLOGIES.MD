@@ -13,7 +13,7 @@ there should be other methods of evaluating the best algorithm for such a situat
 These would inlcude:
 
 PRECISION
-
+A measure of a classifiers exactness. A low value suggests a high number of false positives
 RECALL
 
 
