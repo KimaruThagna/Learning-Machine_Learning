@@ -10,3 +10,11 @@ ACCURACY PARADOX
 An occurence where the training data has a large class imbalance such that the majority of the training set is of one output label
 In this case, any other predictive model would be beaten by the naive model and as such,
 there should be other methods of evaluating the best algorithm for such a situation.
+These would inlcude:
+
+PRECISION
+
+RECALL
+
+
+F1-SCORE
