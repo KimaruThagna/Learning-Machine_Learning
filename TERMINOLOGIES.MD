@@ -28,3 +28,6 @@ Return Values range from -1 to +1
 -1---Total disagreement between predicted and actual val
 0-- indicates that the model is no better than random guessing
 +1- indicates perfect agreement between predicted and actual value
+
+# FURTHER READING ON MCC#
+https://en.wikipedia.org/wiki/Matthews_correlation_coefficient
