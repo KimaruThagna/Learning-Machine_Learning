@@ -2,14 +2,14 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_digits
+from sklearn.cross_validation import train_test_split
 
+train_data=load_digits()
 
-train_data=pd.read_csv('digits_dataset/train.csv')
-test_data=pd.read_csv('digits_dataset/test.csv')
-print(train_data.head())
-
-#inspcet single row
-val=train_data.iloc[0,1: ].values
-val=val.reshape(28,28).astype('uint8')
-plt.imshow(val)
-plt.show()
+print(train_data.target_names)
+X=train_data.data
+Y=train_data.target
+x_train,y_train,x_test,y_test=train_test_split(X,Y,test_size=0.3,random_state=85)
+clf=RandomForestClassifier(n_estimators=100)# this defines the number of decision trees used
+clf.fit(x_train,y_train)
