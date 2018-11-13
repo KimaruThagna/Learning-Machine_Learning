@@ -3,7 +3,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_digits
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 train_data=load_digits()
 
