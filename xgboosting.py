@@ -1,11 +1,10 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split
 import xgboost
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score
+from sklearn.metrics import classification_report
 
 # Importing the dataset
 dataset = pd.read_csv('churn_Dataset/Churn_Modelling.csv')
@@ -35,7 +34,8 @@ y_pred = classifier.predict(X_test)
 
 cm = confusion_matrix(y_test, y_pred)
 # Applying k-Fold Cross Validation
-from sklearn.model_selection import cross_val_score
 accuracies = cross_val_score(estimator = classifier, X = X_train, y = y_train, cv = 10)
-accuracies.mean()
-accuracies.std()
+print('Cross Validation Mean',accuracies.mean())
+print('Cross Validation STD',accuracies.std())
+print ('Classification Report',classification_report(y_test, y_pred))
+
