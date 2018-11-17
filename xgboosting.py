@@ -6,3 +6,8 @@ from sklearn.model_selection import train_test_split
 import xgboost
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score
+
+# Importing the dataset
+dataset = pd.read_csv('churn_Dataset/Churn_Modelling.csv')
+X = dataset.iloc[:, 3:13].values
+y = dataset.iloc[:, 13].values
