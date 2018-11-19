@@ -7,7 +7,7 @@ import numpy as np
 digits=load_digits()
 print(digits.keys()) # to inspect the available keys and data
 data=pd.DataFrame(data=np.c_[digits['data'],digits['target']],
-                            columns=digits.features+['target'])
+                            columns=digits.keys())
 
 X=data.drop('target',axis=1)
 Y=data['target']
